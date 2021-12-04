@@ -47,7 +47,6 @@ int main() {
     char* coRate = *rows;
 
 
-    printf("%s %s\n", oxRate, coRate);
 
     int dox = 0;
     int dco = 0;
@@ -61,7 +60,6 @@ int main() {
         }
     }
 
-    printf("dox: %d, dco: %d\n", dox, dco);
 
     printf("out: %d\n", dox * dco);
 
