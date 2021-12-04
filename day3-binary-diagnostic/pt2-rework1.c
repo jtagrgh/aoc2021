@@ -27,21 +27,6 @@ void addToTail(struct linkedList* list, char* bin) {
 }
 
 
-void deleteAtIndex(struct linkedList* list, int index) {
-    struct node* seekerNode = list->head;
-    struct node* delNode;
-
-    for (int i = 0; i < index; i++) {
-        seekerNode = seekerNode->next;
-    }
-
-    delNode = seekerNode->next;
-    seekerNode->next = delNode->next;
-
-    free(delNode);
-}
-
-
 void reduce(struct linkedList* list, int index, int* listLength, char seek){
 
     if (*listLength <= 1) {
