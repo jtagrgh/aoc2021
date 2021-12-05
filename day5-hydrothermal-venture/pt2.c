@@ -18,60 +18,53 @@ int compPoints(point point1, point point2){
 }
 
 void createLine(int grid[GRID_SIZE][GRID_SIZE], point point1, point point2) {
-    int diff;
-    int minVal;
-    int maxVal;
-
     point incPoint;
-    point maxPoint;
+
+    int xMod = 0;
+    int yMod = 0;
+
+    int diff = 0;
     
-    /* if it's a horizontal line */
     if (point1.x == point2.x) {
-        minVal = min(point1.y, point2.y);
-        maxVal = max(point1.y, point2.y);
+        incPoint.x = point1.x;
+        incPoint.y = min(point1.y, point2.y);
 
-        diff = maxVal - minVal;
+        diff = abs(point1.y - point2.y);
+        yMod = 1;
 
-        for (int i = minVal; i <= maxVal; i++){
-            grid[point1.x][i]++;
-        }
-    } /* Vertical line */
+    } /* Horizontal */
     else if (point1.y == point2.y) {
-        minVal = min(point1.x, point2.x);
-        maxVal = max(point1.x, point2.x);
+        incPoint.x = min(point1.x, point2.x);
+        incPoint.y = point1.y;
 
-        diff = maxVal - minVal;
+        diff = abs(point1.x - point2.x);
+        xMod = 1;
 
-        for (int i = minVal; i <= maxVal; i++){
-            grid[i][point1.y]++;
-        }
     } else { /* Diagonal */
         incPoint.x = min(point1.x, point2.x);
         incPoint.y = min(point1.y, point2.y);
         
         /* If angle is 45 deg */
         if (compPoints(incPoint, point1) || compPoints(incPoint, point2)){
-            maxPoint.x = max(point1.x, point2.x);
-            maxPoint.y = max(point1.y, point2.y);
+            diff = abs(point1.x - point2.x);
+            xMod = 1;
+            yMod = 1;
 
-            while (incPoint.x <= maxPoint.x) {
-                grid[incPoint.x][incPoint.y]++;
-                incPoint.x++;
-                incPoint.y++;
-            }
         } else { /* If angle is 135 deg */
             incPoint.x = min(point1.x, point2.x);
             incPoint.y = max(point1.y, point2.y);
 
-            maxPoint.x = max(point1.x, point2.x);
-            maxPoint.y = min(point1.y, point2.y);
+            diff = abs(point1.x - point2.x);
+            xMod = 1;
+            yMod = -1;
 
-            while (incPoint.x <= maxPoint.x) {
-                grid[incPoint.x][incPoint.y]++;
-                incPoint.x++;
-                incPoint.y--;
-            }
         }
+    }
+
+    for (int i = 0; i <= diff; i++){
+        grid[incPoint.x][incPoint.y]++;
+        incPoint.x += xMod;
+        incPoint.y += yMod;
     }
 
     return;
