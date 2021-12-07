@@ -36,7 +36,7 @@ unsigned long simFish(int daysLeftAtFPD) {
 
 int main() {
     
-    /*
+    /* using pre-inputs doesn't work for some reason, weird.
     unsigned long saveSet[6] = {0L, 6206821033LU, 5617089148LU, 5217223242LU, 4726100874LU, 4368232009LU};
     */
 
