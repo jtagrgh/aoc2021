@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define max(a,b)            (((a) > (b)) ? (a) : (b))
 #define min(a,b)            (((a) < (b)) ? (a) : (b))
-#define GRID_SIZE 1000
+#define GRID_SIZE 10
 
 typedef struct point {
     int x;
@@ -84,7 +84,7 @@ int calcScore(int grid[GRID_SIZE][GRID_SIZE]) {
 
 int main() {
     
-    FILE* fp = fopen("input.txt", "r");
+    FILE* fp = fopen("input3.txt", "r");
 
     int grid[GRID_SIZE][GRID_SIZE] = {0};
 
@@ -113,7 +113,6 @@ int main() {
         createLine(grid, point1, point2);
     }
     
-    /* print the grid
     for (int i = 0; i < GRID_SIZE; i++){
         for (int j = 0; j < GRID_SIZE; j++){
             if (grid[j][i] == 0)
@@ -123,7 +122,6 @@ int main() {
         }
         printf("\n");
     }
-    */
 
     printf("\nScore: %d\n", calcScore(grid));
 
