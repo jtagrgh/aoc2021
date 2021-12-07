@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define DAYS_TO_SIM 256
 
-/* Called on the first production day (FPD) of a fish */
+/* Called on the first day a fish produces - first production day (FPD) of a fish */
 unsigned long simFish(int daysLeftAtFPD) {
     
     /* 1 for the parent fish */
@@ -16,7 +16,7 @@ unsigned long simFish(int daysLeftAtFPD) {
     so counts parent and only child */
     if (daysLeftAtFPD < 7 && daysLeftAtFPD >= 0) {
         return 2;
-    } /* This catches fish whose FPDs are invalid, thus they produce
+    } /* This catches fish whose FPDs are negative, thus they produce
     no children */
     else if (daysLeftAtFPD < 0) {
         return 1;
@@ -24,12 +24,12 @@ unsigned long simFish(int daysLeftAtFPD) {
 
     /* Otherwise apply same logic recursively to each child fish */
     for (int i = 0; i < subFish; i++){
-        /* Day of the subfishes FPD */
+        /* Day of the subfishe's FPD */
         fish += simFish(daysLeftAtFPD - 9); 
+        
         /* Day the subfish is produced */
         daysLeftAtFPD -= 7;
     }
-
 
     return fish;
 }
