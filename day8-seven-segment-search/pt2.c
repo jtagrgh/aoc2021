@@ -2,18 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-enum digits {
-    one = 2,
-    four = 4,
-    seven = 3,
-    eight = 7,
-};
-
-struct digit {
-    int val;
-    int comb[10];
-};
-
+/* I like what this function does */
 int diffCount(char* str1, char* str2) {
 
     int count = 0;
