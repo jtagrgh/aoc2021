@@ -1,39 +1,6 @@
 #include <stdio.h>
 #define SIZE 1000
 
-int getBasin(int grid[SIZE][SIZE], int x, int y) {
-    int size = 1;
-
-    int point = grid[x][y];
-
-    /* Stops tracing back over checked vals */
-    grid[x][y] = 9;
-
-    /* 99 for border vals */
-    if (point == 9 || point == 99) return 0;
-
-    /* up */
-    if (grid[x][y-1] > point) {
-        size += getBasin(grid, x, y-1);
-    }
-    /* left */
-    if (grid[x-1][y] > point) {
-        size += getBasin(grid, x-1, y);
-    }
-    /* right */
-    if (grid[x+1][y] > point) {
-        size += getBasin(grid, x+1, y);
-    }
-    /* down */
-    if (grid[x][y+1] > point) {
-        size += getBasin(grid, x, y+1);
-    }
-
-
-    return size;
-}
-
-
 int main() {
 
     FILE* fp = fopen("input.txt", "r");
@@ -63,8 +30,6 @@ int main() {
 
     int risk = 0;
 
-    int biggestBasins[4] = {0};
-
     for (int x = 1; x < xMax; ++x) {
         for (int y = 1; y < yMax; ++y) {
             int point = grid[x][y];
@@ -73,22 +38,13 @@ int main() {
                 && point < grid[x+1][y]
                 && point < grid[x][y+1]) {
 
-                    int basinVal = getBasin(grid, x, y);
-                    for (int i = 0; i < 3; ++i) {
-                        if (basinVal > biggestBasins[i]) {
-                            biggestBasins[i] = basinVal;
-                            break;
-                        }
-                    }
+                risk += point + 1;
 
             }
         }
     }
 
-    int basinTotal = 1;
-    for (int i = 0; i < 3; ++i) basinTotal *= biggestBasins[i];
-
-    printf("Basin Total: %d\n", basinTotal);
+    printf("Risk Total: %d\n", risk);
 
 
     return 0;
