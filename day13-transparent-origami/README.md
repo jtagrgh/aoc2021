@@ -2,7 +2,7 @@ This one was gentle and relaxing.
 
 Used a nice way for making bigger than stack allowed arrays,
 
-Instead of: `int arr[SIZE][SIZ];`
+Instead of: `int arr[SIZE][SIZE];`
 You can do: 
 ```
 int* arr[SIZE];
